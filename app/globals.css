@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  /* keep anchored sections clear of the sticky navbar */
+  scroll-padding-top: 4.5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* lock page scroll while a modal <dialog> is open */
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+a,
+button,
+label {
+  touch-action: manipulation;
+}
+
+.font-bn {
+  font-family: var(--font-hind-siliguri), Arial, Helvetica, sans-serif;
+}
+
+/* horizontal swipe lists (reviews) */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
