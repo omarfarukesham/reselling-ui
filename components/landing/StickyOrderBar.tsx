@@ -41,8 +41,8 @@ export default function StickyOrderBar() {
           className="flex h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-brand-600 text-base font-bold text-white active:scale-[0.98]"
         >
           <ShoppingBag className="h-5 w-5" />
-          অর্ডার করুন — {fmt(product.price)}
-          {product.currency}
+          অর্ডার করুন · {fmt(product.price)}
+          {product.currency} থেকে
         </a>
       </div>
     </div>

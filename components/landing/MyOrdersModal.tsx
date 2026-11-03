@@ -317,7 +317,11 @@ function OrderCard({ order: o }: { order: TrackedOrder }) {
         <Row
           label="ডেলিভারি"
           value={`${areaLabel[o.deliveryArea] ?? o.deliveryArea}${
-            o.deliveryCharged != null ? ` (${fmt(o.deliveryCharged)}${product.currency})` : ""
+            o.deliveryCharged === 0
+              ? " (ফ্রি)"
+              : o.deliveryCharged != null
+                ? ` (${fmt(o.deliveryCharged)}${product.currency})`
+                : ""
           }`}
         />
         <Row label="ঠিকানা" value={o.deliveryAddress} />

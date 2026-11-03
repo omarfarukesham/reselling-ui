@@ -6,7 +6,7 @@ import SectionTitle from "@/components/ui/SectionTitle";
 export default function Reviews() {
   return (
     <Section id="reviews" className="py-14 sm:py-20">
-      <SectionTitle eyebrow="Customer Reviews" title="কাস্টমারদের মতামত" subtitle="যারা ইতিমধ্যে কিনেছেন, তারা যা বলছেন" />
+      <SectionTitle eyebrow="Customer Reviews" title="যারা নিয়েছেন, তারা কী বলছেন" />
 
       {/* Mobile: swipeable row (next card peeks in). Desktop: 3-column grid. */}
       <ul className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:px-6 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0">
@@ -34,7 +34,7 @@ export default function Reviews() {
           </li>
         ))}
       </ul>
-      <p className="mt-3 text-center text-xs text-slate-400 md:hidden">← সোয়াইপ করে আরও দেখুন →</p>
+      <p className="mt-3 text-center text-xs text-slate-400 md:hidden">← পাশে সরিয়ে আরও দেখুন →</p>
     </Section>
   );
 }

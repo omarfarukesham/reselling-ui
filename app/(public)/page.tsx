@@ -1,6 +1,7 @@
 import Hero from "@/components/landing/sections/Hero";
 import Stats from "@/components/landing/sections/Stats";
 import ProductDetails from "@/components/landing/sections/ProductDetails";
+import ComboOffer from "@/components/landing/sections/ComboOffer";
 import WhyUs from "@/components/landing/sections/WhyUs";
 import Reviews from "@/components/landing/sections/Reviews";
 import OrderForm from "@/components/landing/sections/OrderForm";
@@ -11,10 +12,11 @@ export default function HomePage() {
     <OrderSelectionProvider>
       <Hero />
       <Stats />
-      <ProductDetails />
+      {/* <ProductDetails /> */}
+      <ComboOffer />
       <WhyUs />
-      <Reviews />
       <OrderForm />
+      <Reviews />
     </OrderSelectionProvider>
   );
 }
