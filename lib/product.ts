@@ -40,11 +40,11 @@ export const product = {
   // Short trust strip under the hero CTA (icons are mapped in Hero.tsx)
   trust: ["ক্যাশ অন ডেলিভারি", "সারা দেশে ডেলিভারি", "সহজ এক্সচেঞ্জ"],
 
-  rating: { value: "4.9", count: "1000+" },
+  rating: { value: "4.10", count: "200+" },
 
   stats: [
-    { value: "1000+", label: "হ্যাপি প্যারেন্টস" },
-    { value: "4.9★", label: "গড় রেটিং" },
+    { value: "200+", label: "হ্যাপি প্যারেন্টস" },
+    { value: "4.10★", label: "গড় রেটিং" },
     { value: "64", label: "জেলায় ডেলিভারি" },
   ],
 
