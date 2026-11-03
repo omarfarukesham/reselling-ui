@@ -25,7 +25,7 @@ export default function Footer() {
                 <ShieldCheck className="h-5 w-5" />
               </span>
               <div>
-                <p className="font-bold text-white text-sm">১০০% নিশ্চিন্ত ক্যাশ</p>
+                <p className="font-bold text-white text-sm">ক্যাশ অন ডেলিভারি</p>
                 <p className="text-xs text-slate-400">হাতে পেয়ে টাকা দিন</p>
               </div>
             </div>
@@ -36,7 +36,7 @@ export default function Footer() {
               </span>
               <div>
                 <p className="font-bold text-white text-sm">সারা দেশে ডেলিভারি</p>
-                <p className="text-xs text-slate-400">৬৪ জেলায় দ্রুত ডেলিভারি</p>
+                <p className="text-xs text-slate-400">৬৪ জেলাতেই পাঠাই</p>
               </div>
             </div>
 
@@ -46,7 +46,7 @@ export default function Footer() {
               </span>
               <div>
                 <p className="font-bold text-white text-sm">সহজ এক্সচেঞ্জ</p>
-                <p className="text-xs text-slate-400">পছন্দ না হলে বদলে নিন</p>
+                <p className="text-xs text-slate-400">সাইজ না মিললে বদলে নিন</p>
               </div>
             </div>
 
@@ -55,8 +55,8 @@ export default function Footer() {
                 <Headphones className="h-5 w-5" />
               </span>
               <div>
-                <p className="font-bold text-white text-sm">২৪/৭ সাপোর্ট</p>
-                <p className="text-xs text-slate-400">যে কোনো প্রয়োজনে কল দিন</p>
+                <p className="font-bold text-white text-sm">যেকোনো দরকারে</p>
+                <p className="text-xs text-slate-400">কল বা মেসেজ দিন</p>
               </div>
             </div>
           </div>
@@ -123,10 +123,10 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#details"
+                  href="#offer"
                   className="hover:text-brand-400 transition-colors inline-block"
                 >
-                  পণ্যের বিশেষত্ব
+                  কম্বো অফার
                 </Link>
               </li>
               <li>
@@ -134,7 +134,7 @@ export default function Footer() {
                   href="#reviews"
                   className="hover:text-brand-400 transition-colors inline-block"
                 >
-                  গ্রাহকদের মতামত (Reviews)
+                  কাস্টমার রিভিউ
                 </Link>
               </li>
               <li>
@@ -179,7 +179,7 @@ export default function Footer() {
                   <MapPin className="h-4 w-4" />
                 </span>
                 <span className="text-xs leading-relaxed">
-                  ঢাকা, বাংলাদেশ (সারা বাংলাদেশে হোম ডেলিভারি সার্ভিস উপলব্ধ)
+                  ঢাকা, বাংলাদেশ। সারা দেশে হোম ডেলিভারি দেওয়া হয়।
                 </span>
               </div>
             </div>
@@ -192,7 +192,7 @@ export default function Footer() {
           <div className="flex items-center gap-4 text-[11px]">
             <span>ক্যাশ অন ডেলিভারি</span>
             <span>•</span>
-            <span>১০০% নিরাপদ শপিং</span>
+            <span>হাতে পেয়ে টাকা</span>
             <span>•</span>
             <a
               href={fbUrl}

@@ -1,5 +1,5 @@
-import { CheckCircle2, RefreshCw, Star, Truck, Wallet } from "lucide-react";
-import { product } from "@/lib/product";
+import { CheckCircle2, Gift, RefreshCw, Star, Truck, Wallet } from "lucide-react";
+import { comboFor, product } from "@/lib/product";
 import { fmt } from "@/lib/utils";
 import OrderButton from "@/components/ui/OrderButton";
 import ProductGallery from "@/components/landing/ProductGallery";
@@ -9,6 +9,7 @@ const trustIcons = [Wallet, Truck, RefreshCw];
 export default function Hero() {
   const { price, oldPrice, currency, rating } = product;
   const discount = Math.round(((oldPrice - price) / oldPrice) * 100);
+  const combo3 = comboFor(3);
 
   return (
     <section
@@ -50,8 +51,21 @@ export default function Hero() {
               {fmt(oldPrice)}
               {currency}
             </span>
-            <span className="text-sm font-semibold text-red-600">{fmt(oldPrice - price)}৳ সাশ্রয়</span>
+            <span className="text-sm font-semibold text-red-600">{fmt(oldPrice - price)}৳ কম</span>
           </div>
+
+          {/* Combo strip */}
+          <a
+            href="#offer"
+            className="mt-4 inline-flex items-center gap-2 rounded-2xl border border-dashed border-brand-300 bg-white/80 px-4 py-2.5 text-left text-sm text-slate-700 shadow-sm"
+          >
+            <Gift className="h-5 w-5 shrink-0 text-brand-600" />
+            <span>
+              <span className="font-bold text-neutral-900">২টা নিলে ডেলিভারি ফ্রি</span>
+              <span className="mx-1.5 text-slate-300">|</span>
+              <span className="font-bold text-neutral-900">৩টা মাত্র {fmt(combo3.price)}{currency}</span>
+            </span>
+          </a>
 
           {/* block wrapper keeps the centred list and the CTA on separate lines */}
           <div className="mt-5">

@@ -61,7 +61,7 @@ export default function ProductGallery({ discount }: { discount: number }) {
       </div>
 
       {/* Thumbnails (tablet/desktop) */}
-      <div className="mt-3 hidden grid-cols-3 gap-3 sm:grid">
+      <div className="mt-3 hidden grid-cols-2 gap-3 sm:grid">
         {views.map((v, i) => (
           <button
             key={v.id}
@@ -80,7 +80,7 @@ export default function ProductGallery({ discount }: { discount: number }) {
       {/* Colour swatches */}
       <div className="mt-4 flex items-center justify-center gap-3 lg:justify-start">
         <span className="text-[15px] font-medium text-slate-600">
-          রং: <span className="font-bold text-neutral-900">{colorById(color).nameBn}</span>
+          রং: <span className="font-bold text-neutral-900">{colorById(color).name}</span>
         </span>
         <div className="flex gap-2.5" role="radiogroup" aria-label="রং বেছে নিন">
           {product.colors.map((c) => (
@@ -89,7 +89,7 @@ export default function ProductGallery({ discount }: { discount: number }) {
               type="button"
               role="radio"
               aria-checked={color === c.id}
-              aria-label={`${c.nameBn} (${c.name})`}
+              aria-label={c.name}
               onClick={() => selectColor(c.id)}
               className={`grid h-11 w-11 place-items-center rounded-full ring-2 ring-offset-2 transition ${
                 color === c.id ? "ring-brand-600" : "ring-transparent hover:ring-slate-300"

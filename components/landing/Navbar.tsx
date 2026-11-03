@@ -3,7 +3,7 @@ import CopyPhoneButton from "@/components/landing/CopyPhoneButton";
 import MyOrdersModal from "@/components/landing/MyOrdersModal";
 
 const links = [
-  { label: "প্রোডাক্ট", href: "#details" },
+  { label: "কম্বো অফার", href: "#offer" },
   { label: "কেন আমরা", href: "#why-us" },
   { label: "রিভিউ", href: "#reviews" },
 ];

@@ -26,7 +26,7 @@ export default function ColorCards() {
             >
               <span className="relative block aspect-square">
                 <Image
-                  src={productImage(c.id, "front")}
+                  src={productImage(c.id, "baby")}
                   alt={`${product.name} — ${c.name}`}
                   fill
                   sizes="(max-width: 640px) 33vw, 300px"
@@ -36,7 +36,7 @@ export default function ColorCards() {
               <span className="block px-1 pb-3 pt-2">
                 <span className="flex items-center justify-center gap-1.5 text-[15px] font-bold text-neutral-900">
                   <span className="h-3 w-3 rounded-full ring-1 ring-black/10" style={{ backgroundColor: c.hex }} />
-                  {c.nameBn}
+                  {c.name}
                 </span>
                 <span className="mt-1.5 inline-block rounded-full bg-brand-600 px-3 py-1.5 text-xs font-bold text-white sm:px-4 sm:text-sm">
                   অর্ডার করুন

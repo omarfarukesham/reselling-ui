@@ -3,42 +3,58 @@
 // Price, sizes and contact info are placeholders — confirm before going live.
 // ─────────────────────────────────────────────────────────────
 
-export type ColorId = "red" | "grey" | "brown";
-export type ProductView = "baby" | "front" | "back";
+export type ColorId = "red" | "blue" | "brown";
+export type ProductView = "baby" | "back";
+
+export type Combo = {
+  qty: number;
+  price: number; // total product price for this many pieces (delivery not included)
+  freeDelivery: boolean;
+  title: string;
+  tag?: string;
+};
 
 export const product = {
   brand: "E Buy",
   name: "Teddy Bear Baby Wrap",
   nameBn: "টেডি বিয়ার বেবি হুডি র‍্যাপ",
-  tagline: "নবজাতকের জন্য নরম টেডি বিয়ার হুডি র‍্যাপ",
-  subtitle: "বাইরে তুলতুলে টেডি ফ্লিস, ভেতরে নরম কুইল্টেড লাইনিং — শীতে বাবুকে মাথা থেকে পা পর্যন্ত উষ্ণ রাখে।",
-  badge: "শীতের বেস্ট সেলার",
+  tagline: "শীতের রাতে বাবু থাকবে উষ্ণ, আপনি থাকবেন নিশ্চিন্ত",
+  subtitle:
+    "বাইরে তুলতুলে টেডি ফ্লিস, ভেতরে নরম কুইল্টেড লাইনিং। মাথা থেকে পা পর্যন্ত ঢাকা থাকে, তাই ঘুমের মধ্যে হাত-পা ছুড়লেও ঠান্ডা লাগে না।",
+  badge: "এই শীতে সবচেয়ে বেশি চলছে",
 
   price: 390,
   oldPrice: 550,
   currency: "৳",
 
-  // Each colour has 3 photos in /public/assets/products: <id>-baby / -front / -back.webp
+  // Combo pricing. The order form only offers these quantities.
+  combos: [
+    { qty: 1, price: 390, freeDelivery: false, title: "১টা" },
+    { qty: 2, price: 780, freeDelivery: true, title: "২টা" },
+    { qty: 3, price: 990, freeDelivery: true, title: "৩টা", tag: "সবচেয়ে বেশি সাশ্রয়" },
+  ] as Combo[],
+
+  // Each colour has 2 photos in /public/assets/products: <id>-baby.webp and <id>-back.webp
+  // Colour names are shown in English on purpose.
   colors: [
-    { id: "red", name: "Red", nameBn: "লাল", hex: "#b3141c" },
-    { id: "grey", name: "Grey", nameBn: "ছাই", hex: "#9e9e9e" },
-    { id: "brown", name: "Brown", nameBn: "বাদামি", hex: "#8f4a1c" },
-  ] as { id: ColorId; name: string; nameBn: string; hex: string }[],
+    { id: "blue", name: "Blue", hex: "#1f2d6e", file: "navy" },
+    { id: "red", name: "Red", hex: "#b3141c", file: "red" },
+    { id: "brown", name: "Brown", hex: "#8f4a1c", file: "brown" },
+  ] as { id: ColorId; name: string; hex: string; file: string }[],
 
   views: [
     { id: "baby", label: "বাবুর গায়ে" },
-    { id: "front", label: "সামনে" },
-    { id: "back", label: "পেছনে" },
+    { id: "back", label: "পেছন থেকে" },
   ] as { id: ProductView; label: string }[],
 
   heroBullets: [
-    "বিয়ার কান হুড — মাথা ও কান উষ্ণ রাখে",
-    "পায়ের পকেট — লাথি দিলেও খুলে যায় না",
-    "সামনে স্ন্যাপ বাটন — সহজে পরানো যায়",
+    "কানওয়ালা হুড, মাথা আর কান দুটোই ঢাকা থাকে",
+    "পা দুটো আলাদা পকেটে, লাথি দিলেও খুলে যায় না",
+    "সামনে স্ন্যাপ বাটন, ঘুম না ভাঙিয়েই ডায়াপার বদলানো যায়",
   ],
 
   // Short trust strip under the hero CTA (icons are mapped in Hero.tsx)
-  trust: ["ক্যাশ অন ডেলিভারি", "সারা দেশে ডেলিভারি", "সহজ এক্সচেঞ্জ"],
+  trust: ["হাতে পেয়ে টাকা", "সারা দেশে ডেলিভারি", "সহজে এক্সচেঞ্জ"],
 
   rating: { value: "4.10", count: "200+" },
 
@@ -52,18 +68,18 @@ export const product = {
     src: "/assets/video/product-demo.mp4",
     poster: "/assets/video/product-demo-poster.jpg",
     title: "ভিডিওতে দেখে নিন",
-    caption: "কাপড়ের কোয়ালিটি ও ব্যবহারের নিয়ম",
+    caption: "কাপড় কেমন আর কীভাবে পরাবেন",
     duration: "0:45",
   },
 
   // Feature cards in Product Details (icons are mapped in ProductDetails.tsx)
   features: [
-    { icon: "hood", title: "বিয়ার কান হুড", desc: "মাথা ও কান ঢেকে রাখে, দেখতেও দারুণ কিউট।" },
-    { icon: "fleece", title: "নরম টেডি ফ্লিস", desc: "বাইরে তুলতুলে শেরপা ফ্লিস — শীতে উষ্ণ রাখে।" },
-    { icon: "lining", title: "কুইল্টেড লাইনিং", desc: "ভেতরে নরম কুইল্টেড কাপড় — ত্বকে আরামদায়ক।" },
-    { icon: "wrap", title: "র‍্যাপ ডিজাইন", desc: "দুই পাশের ডানা দিয়ে সহজে মুড়িয়ে নিন।" },
-    { icon: "feet", title: "পায়ের পকেট", desc: "দুই পা আলাদা পকেটে — হাত-পা ছুড়লেও খোলে না।" },
-    { icon: "snap", title: "স্ন্যাপ বাটন", desc: "সামনে বাটন — পরানো ও ডায়াপার বদলানো সহজ।" },
+    { icon: "hood", title: "কানওয়ালা হুড", desc: "মাথা আর কান ঢাকা থাকে, দেখতেও ভারি মিষ্টি লাগে।" },
+    { icon: "fleece", title: "নরম টেডি ফ্লিস", desc: "বাইরের কাপড়টা তুলতুলে আর গরম, শীতের জন্য একদম ঠিক।" },
+    { icon: "lining", title: "কুইল্টেড লাইনিং", desc: "ভেতরটা নরম, বাবুর গায়ে ঘষা লাগে না।" },
+    { icon: "wrap", title: "র‍্যাপ ডিজাইন", desc: "দুই পাশের ডানা দিয়ে সহজে মুড়িয়ে নেওয়া যায়।" },
+    { icon: "feet", title: "পায়ের পকেট", desc: "দুই পা আলাদা পকেটে থাকে, ছুড়াছুড়ি করলেও খোলে না।" },
+    { icon: "snap", title: "স্ন্যাপ বাটন", desc: "সামনে বাটন, তাই পরানো আর ডায়াপার বদলানো সহজ।" },
   ],
 
   // TODO: confirm the real size range with the supplier
@@ -73,12 +89,13 @@ export const product = {
   ],
 
   whyUs: [
-    { icon: "quality", title: "প্রিমিয়াম কোয়ালিটি", desc: "ঘন নরম ফ্লিস ও মজবুত সেলাই।" },
-    { icon: "cod", title: "ক্যাশ অন ডেলিভারি", desc: "পণ্য হাতে পেয়ে টাকা পরিশোধ করুন।" },
-    { icon: "delivery", title: "দ্রুত ডেলিভারি", desc: "ঢাকায় ১-২ দিন, বাইরে ২-৪ দিন।" },
-    { icon: "exchange", title: "সহজ এক্সচেঞ্জ", desc: "সাইজ না মিললে সহজেই বদলে নিন।" },
+    { icon: "quality", title: "কাপড় ভালো", desc: "ঘন নরম ফ্লিস, সেলাইও মজবুত।" },
+    { icon: "cod", title: "আগে টাকা লাগবে না", desc: "পণ্য হাতে পেয়ে তারপর টাকা দিবেন।" },
+    { icon: "delivery", title: "দ্রুত ডেলিভারি", desc: "ঢাকায় ১-২ দিন, ঢাকার বাইরে ২-৪ দিন।" },
+    { icon: "exchange", title: "সহজে এক্সচেঞ্জ", desc: "সাইজ না মিললে ঝামেলা ছাড়াই বদলে নিন।" },
   ],
 
+  // TODO: replace with real customer reviews (e.g. from Facebook comments/messages)
   reviews: [
     {
       name: "সুমাইয়া আক্তার",
@@ -113,8 +130,19 @@ export const product = {
   },
 };
 
-export const productImage = (color: ColorId, view: ProductView) => `/assets/products/${color}-${view}.webp`;
+// File prefix comes from colors[].file (e.g. Blue -> navy-baby.webp).
+// Use a new file name whenever a photo is replaced, so browsers don't show a cached old one.
+export const productImage = (color: ColorId, view: ProductView) =>
+  `/assets/products/${colorById(color).file}-${view}.webp`;
 
 export const colorById = (id: ColorId) => product.colors.find((c) => c.id === id) ?? product.colors[0];
+
+export const MAX_QTY = Math.max(...product.combos.map((c) => c.qty));
+
+export const comboFor = (qty: number): Combo =>
+  product.combos.find((c) => c.qty === qty) ?? product.combos[0];
+
+// What the customer would pay without the combo (for the "you save" line)
+export const regularPrice = (qty: number) => product.price * qty;
 
 export type Product = typeof product;
