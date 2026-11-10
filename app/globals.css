@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Default theme: warm "teddy" caramel (RGB channels, used by tailwind.config.ts).
+   Landing pages can override these on a wrapper; see lib/landings/theme.ts. */
+:root {
+  --brand-50: 255 248 241; /* #fff8f1 */
+  --brand-100: 253 235 216; /* #fdebd8 */
+  --brand-200: 248 210 173; /* #f8d2ad */
+  --brand-300: 240 170 110;
+  --brand-400: 232 145 75;
+  --brand-500: 224 122 47; /* #e07a2f */
+  --brand-600: 180 82 15; /* #b4520f */
+  --brand-700: 146 63 10; /* #923f0a */
+  --brand-800: 117 50 10;
+  --cream: 255 250 245; /* #fffaf5 */
+  --ink: 10 10 10; /* #0a0a0a */
+}
+
 html {
   scroll-behavior: smooth;
   /* keep anchored sections clear of the sticky navbar */

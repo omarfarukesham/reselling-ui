@@ -1,10 +1,11 @@
 import { product } from "@/lib/product";
 import CopyPhoneButton from "@/components/landing/CopyPhoneButton";
 import MyOrdersModal from "@/components/landing/MyOrdersModal";
+import ProductsMenu from "@/components/landing/ProductsMenu";
+import { productMenuItems } from "@/lib/landings/menu";
 
 const links = [
   { label: "কম্বো অফার", href: "#offer" },
-  { label: "কেন আমরা", href: "#why-us" },
   { label: "রিভিউ", href: "#reviews" },
 ];
 
@@ -33,7 +34,15 @@ export default function Navbar() {
         <Logo />
 
         <ul className="hidden items-center gap-8 text-[15px] font-medium text-slate-600 lg:flex">
-          {links.map((l) => (
+          <li>
+            <a href={links[0].href} className="transition-colors hover:text-brand-600">
+              {links[0].label}
+            </a>
+          </li>
+          <li>
+            <ProductsMenu items={productMenuItems} currentHref="/" variant="desktop" />
+          </li>
+          {links.slice(1).map((l) => (
             <li key={l.href}>
               <a href={l.href} className="transition-colors hover:text-brand-600">
                 {l.label}
@@ -43,6 +52,9 @@ export default function Navbar() {
         </ul>
 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <div className="lg:hidden">
+            <ProductsMenu items={productMenuItems} currentHref="/" variant="mobile" />
+          </div>
           <CopyPhoneButton phone={product.contact.phone} />
           <MyOrdersModal />
           {/* Compact on phones, full size from `sm` up */}

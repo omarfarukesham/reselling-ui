@@ -1,13 +1,19 @@
 import CopyPhoneButton from "@/components/landing/CopyPhoneButton";
 import MyOrdersModal from "@/components/landing/MyOrdersModal";
+import ProductsMenu from "@/components/landing/ProductsMenu";
 import type { SingleProduct } from "@/lib/landings/types";
+import { landingHref } from "@/lib/landings";
+import { productMenuItems } from "@/lib/landings/menu";
 
-// "E Buy" → "E" inside the brand square, rest of the name beside it (same look as the main site)
+// Same look as the main site's navbar, with the "আরও পণ্য" menu to move between product pages.
 export default function Header({ p }: { p: SingleProduct }) {
   const [first, ...rest] = p.brand.split(" ");
+  const current = landingHref(p);
+
   return (
     <header className="sticky top-0 z-50 border-b border-brand-100/70 bg-white/90 backdrop-blur-md">
       <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4 sm:h-16 sm:px-6 lg:px-8">
+        {/* "E Buy" → "E" inside the brand square, rest of the name beside it */}
         <a href="#home" aria-label={p.brand} className="flex shrink-0 items-center gap-1.5">
           <span
             aria-hidden
@@ -20,7 +26,28 @@ export default function Header({ p }: { p: SingleProduct }) {
           </span>
         </a>
 
+        <ul className="hidden items-center gap-8 text-[15px] font-medium text-slate-600 lg:flex">
+          <li>
+            <a href="#features" className="transition-colors hover:text-brand-600">
+              বৈশিষ্ট্য
+            </a>
+          </li>
+          <li>
+            <ProductsMenu items={productMenuItems} currentHref={current} variant="desktop" />
+          </li>
+          {p.specs && (
+            <li>
+              <a href="#size" className="transition-colors hover:text-brand-600">
+                মাপ
+              </a>
+            </li>
+          )}
+        </ul>
+
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <div className="lg:hidden">
+            <ProductsMenu items={productMenuItems} currentHref={current} variant="mobile" />
+          </div>
           <CopyPhoneButton phone={p.contact.phone} />
           <MyOrdersModal />
           <a

@@ -1,4 +1,7 @@
 import {
+  Eye,
+  Gem,
+  Grid3x3,
   House,
   Layers,
   Minimize2,
@@ -18,6 +21,9 @@ const icons: Record<string, LucideIcon> = {
   layers: Layers,
   home: House,
   space: Minimize2,
+  grid: Grid3x3,
+  view: Eye,
+  premium: Gem,
 };
 
 export default function Features({ p }: { p: SingleProduct }) {

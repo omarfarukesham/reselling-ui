@@ -1,3 +1,5 @@
+import type { Theme } from "./theme";
+
 // Data shape for a single-product landing page (no combos).
 // Each landing page under app/(landings) gets one of these in lib/landings/.
 
@@ -9,6 +11,7 @@ export type SingleProductColor = {
 };
 
 export type SingleProduct = {
+  slug: string; // URL: /products/<slug>  (lowercase, words joined with -)
   brand: string;
   name: string; // English product name
   shortName: string; // short Bangla name, e.g. on the order confirmation
@@ -18,7 +21,7 @@ export type SingleProduct = {
   subtitle: string;
 
   price: number;
-  oldPrice: number;
+  oldPrice?: number; // regular price; leave out if there is no real discount
   currency: string;
   freeDelivery: boolean;
   maxQty: number;
@@ -32,8 +35,20 @@ export type SingleProduct = {
   guarantee: string;
 
   features: { icon: string; title: string; desc: string }[];
-  specs: {
+
+  // Optional "story" section: a relatable problem → solution block with a photo
+  story?: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    points: string[];
     image: string;
+    imageAlt: string;
+  };
+
+  // Optional "Size & Details" section; leave out to hide it (and its menu links)
+  specs?: {
+    image?: string; // size photo; the table is shown alone without it
     rows: { label: string; value: string }[];
   };
 
@@ -43,4 +58,6 @@ export type SingleProduct = {
   };
 
   contact: { phone: string; whatsapp: string; email: string; facebook: string };
+
+  theme?: Theme; // colour palette; default is the main site's caramel
 };
