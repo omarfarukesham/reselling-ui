@@ -1,6 +1,6 @@
 import ErrorBoundary from "@/components/ErrorBoundary";
 
-// Layout for the extra landing pages (/another1, /another2, ...).
+// Layout for the product landing pages (/products/<slug>).
 // The (landings) folder is a route group: it does not appear in the URL.
 // Kept separate from (public) so these pages don't inherit the teddy wrap's
 // navbar, footer and sticky order bar. Each page brings its own sections.

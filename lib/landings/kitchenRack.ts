@@ -1,8 +1,9 @@
 import type { SingleProduct } from "./types";
 import { product as mainProduct } from "@/lib/product";
 
-// /another1 — 2 Layer Kitchen Organizer Metal Framed Storage Rack
+// /products/kitchen-organizer-rack — 2 Layer Kitchen Organizer Metal Framed Storage Rack
 export const kitchenRack: SingleProduct = {
+  slug: "kitchen-organizer-rack",
   brand: mainProduct.brand,
   name: "2 Layer Kitchen Organizer Metal Framed Storage Rack",
   shortName: "কিচেন র‍্যাক",

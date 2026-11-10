@@ -46,13 +46,13 @@ export default function Footer({ p }: { p: SingleProduct }) {
   const links = [
     { label: "অর্ডার করুন", href: "#order" },
     { label: "বৈশিষ্ট্য", href: "#features" },
-    { label: "মাপ ও বিস্তারিত", href: "#size" },
+    ...(p.specs ? [{ label: "মাপ ও বিস্তারিত", href: "#size" }] : []),
   ];
 
   return (
-    <footer className="w-full border-t border-white/5 bg-neutral-950 pb-28 text-slate-400 md:pb-12">
+    <footer className="w-full border-t border-white/5 bg-ink pb-28 text-slate-400 md:pb-12">
       {/* Trust highlights strip */}
-      <div className="border-b border-white/10 bg-neutral-900/60">
+      <div className="border-b border-white/10 bg-white/[0.03]">
         <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
             {highlights.map((h) => (

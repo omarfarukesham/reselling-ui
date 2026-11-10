@@ -7,7 +7,7 @@ import Gallery from "./Gallery";
 const trustIcons = [Wallet, Truck, BadgeCheck];
 
 export default function Hero({ p }: { p: SingleProduct }) {
-  const discount = Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100);
+  const discount = p.oldPrice ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
 
   return (
     <section
@@ -40,11 +40,15 @@ export default function Hero({ p }: { p: SingleProduct }) {
               {fmt(p.price)}
               <span className="text-2xl">{p.currency}</span>
             </span>
-            <span className="text-xl leading-none text-slate-400 line-through">
-              {fmt(p.oldPrice)}
-              {p.currency}
-            </span>
-            <span className="text-sm font-semibold text-red-600">{fmt(p.oldPrice - p.price)}৳ কম</span>
+            {p.oldPrice && p.oldPrice > p.price && (
+              <>
+                <span className="text-xl leading-none text-slate-400 line-through">
+                  {fmt(p.oldPrice)}
+                  {p.currency}
+                </span>
+                <span className="text-sm font-semibold text-red-600">{fmt(p.oldPrice - p.price)}৳ কম</span>
+              </>
+            )}
           </div>
 
           {p.freeDelivery && (
