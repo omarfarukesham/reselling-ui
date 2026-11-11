@@ -37,7 +37,9 @@ export default function ProductGallery({ discount }: { discount: number }) {
                 src={productImage(color, v.id)}
                 alt={`${product.name} — ${colorById(color).name}, ${v.label}`}
                 fill
-                priority={i === 0}
+                // first photo is the LCP element: start loading it from <head>; the rest wait
+                preload={i === 0}
+                fetchPriority={i === 0 ? undefined : "low"}
                 sizes="(max-width: 1024px) 100vw, 560px"
                 className="object-cover"
               />

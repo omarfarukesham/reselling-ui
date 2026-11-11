@@ -34,6 +34,8 @@ export type TrackedOrder = {
   totalPrice?: number;
   deliveryAddress: string;
   orderStatus: TrackedOrderStatus;
+  isReviewed?: boolean;
+  review?: { rating?: number; comment?: string; status?: TReviewStatus } | null;
   createdAt: string; // ISO date
   updatedAt: string;
 };
@@ -78,4 +80,45 @@ export interface AdminOrdersQuery {
 export interface AdminOrdersResponse {
   orders: IOrder[];
   meta: PaginationMeta;
+}
+
+// ── Reviews ──
+export type TReviewStatus = "pending" | "published" | "rejected";
+
+// GET /api/review (published only, public)
+export interface PublicReview {
+  _id: string;
+  customerName: string;
+  rating: number;
+  comment: string;
+  createdAt: string;
+}
+
+// GET /api/review/stats
+export interface ReviewStats {
+  totalReviews: number;
+  averageRating: number;
+  ratingBreakdown: Record<"1" | "2" | "3" | "4" | "5", number>;
+}
+
+// GET /api/review/admin
+export interface AdminReview {
+  _id: string;
+  orderId?: string;
+  customerName: string;
+  mobileNumber: string;
+  rating: number;
+  comment: string;
+  status: TReviewStatus;
+  createdAt: string;
+  updatedAt?: string;
+}
+
+export interface AdminReviewsQuery {
+  page?: number;
+  limit?: number;
+  status?: TReviewStatus | "";
+  search?: string;
+  sortBy?: string;
+  sortOrder?: "asc" | "desc";
 }

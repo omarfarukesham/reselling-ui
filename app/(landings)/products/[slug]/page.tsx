@@ -9,6 +9,7 @@ import Features from "@/components/landings/single/Features";
 import Story from "@/components/landings/single/Story";
 import Specs from "@/components/landings/single/Specs";
 import OrderForm from "@/components/landings/single/OrderForm";
+import Reviews from "@/components/landing/sections/Reviews";
 import Footer from "@/components/landings/single/Footer";
 import StickyOrderBar from "@/components/landings/single/StickyOrderBar";
 
@@ -54,6 +55,7 @@ export default async function ProductLandingPage({ params }: Props) {
         <Features p={p} />
         <Specs p={p} />
         <OrderForm p={p} />
+        <Reviews />
         <Footer p={p} />
         <StickyOrderBar p={p} />
       </SingleSelectionProvider>

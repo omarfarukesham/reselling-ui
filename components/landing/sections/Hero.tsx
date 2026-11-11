@@ -1,13 +1,17 @@
 import { CheckCircle2, Gift, RefreshCw, Star, Truck, Wallet } from "lucide-react";
 import { comboFor, product } from "@/lib/product";
+import { getRatingSummary } from "@/lib/api/reviews";
 import { fmt } from "@/lib/utils";
 import OrderButton from "@/components/ui/OrderButton";
 import ProductGallery from "@/components/landing/ProductGallery";
 
 const trustIcons = [Wallet, Truck, RefreshCw];
 
-export default function Hero() {
-  const { price, oldPrice, currency, rating } = product;
+export default async function Hero() {
+  const { price, oldPrice, currency } = product;
+  // Real rating from published reviews; the numbers in lib/product.ts until the first one is published
+  const real = await getRatingSummary();
+  const rating = real ? { value: real.average, count: `${real.total}টি` } : product.rating;
   const discount = Math.round(((oldPrice - price) / oldPrice) * 100);
   const combo3 = comboFor(3);
 

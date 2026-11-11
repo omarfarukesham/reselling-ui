@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getClientToken } from "@/lib/auth";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
+import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import { Loader2 } from "lucide-react";
 
 // Every page inside (protected) requires an admin session stored in localStorage.
@@ -34,9 +35,10 @@ export default function ProtectedLayout({
   return (
     <div className="min-h-screen bg-slate-50/60 flex flex-col">
       <DashboardHeader />
-      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 sm:px-6 lg:px-8">
-        {children}
-      </main>
+      <div className="mx-auto flex w-full max-w-[90rem] flex-1 flex-col lg:flex-row">
+        <DashboardSidebar />
+        <main className="min-w-0 flex-1 px-4 py-6 sm:px-6 lg:pl-2 lg:pr-8">{children}</main>
+      </div>
     </div>
   );
 }

@@ -47,6 +47,7 @@ export default function Footer({ p }: { p: SingleProduct }) {
     { label: "অর্ডার করুন", href: "#order" },
     { label: "বৈশিষ্ট্য", href: "#features" },
     ...(p.specs ? [{ label: "মাপ ও বিস্তারিত", href: "#size" }] : []),
+    { label: "কাস্টমার রিভিউ", href: "#reviews" },
   ];
 
   return (

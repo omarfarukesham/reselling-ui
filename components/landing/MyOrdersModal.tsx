@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AlertCircle, Check, Info, Loader2, PackageSearch, RefreshCw, Search, X, XCircle } from "lucide-react";
+import { AlertCircle, Check, Clock, Info, Loader2, PackageSearch, RefreshCw, Search, Star, X, XCircle } from "lucide-react";
 import { getMyOrders } from "@/lib/api/orders";
-import type { TrackedOrder, TrackedOrderStatus } from "@/lib/types";
+import type { TReviewStatus, TrackedOrder, TrackedOrderStatus } from "@/lib/types";
+import ReviewModal from "./ReviewModal";
 import { product } from "@/lib/product";
 import { fmt, isValidPhone, normalizePhone } from "@/lib/utils";
 
@@ -43,6 +44,13 @@ const areaLabel = {
   outsideDhaka: product.delivery.outside.label,
 };
 
+// Shown on an order card once the customer has reviewed it
+const reviewStatusInfo: Record<TReviewStatus, { label: string; style: string }> = {
+  pending: { label: "আপনার রিভিউ যাচাই করা হচ্ছে", style: "bg-amber-50 text-amber-700" },
+  published: { label: "আপনার রিভিউ সাইটে প্রকাশিত হয়েছে", style: "bg-emerald-50 text-emerald-700" },
+  rejected: { label: "আপনার রিভিউটি প্রকাশ করা হয়নি", style: "bg-slate-100 text-slate-600" },
+};
+
 const NO_ORDER_MSG = "এই মোবাইল নম্বরে আপনার কোনো অর্ডার পাওয়া যায়নি";
 const REFRESHED_MSG = "অর্ডারের সর্বশেষ অবস্থা দেখানো হচ্ছে";
 
@@ -65,6 +73,7 @@ export default function MyOrdersModal() {
   const [refreshing, setRefreshing] = useState(false);
   const [found, setFound] = useState<{ mobile: string; orders: TrackedOrder[]; fetchedAt: Date } | null>(null);
   const [toast, setToast] = useState("");
+  const [reviewing, setReviewing] = useState<TrackedOrder | null>(null);
 
   useEffect(() => {
     if (!toast) return;
@@ -109,6 +118,18 @@ export default function MyOrdersModal() {
       setLoading(false);
       setRefreshing(false);
     }
+  }
+
+  // After a successful review, show it on the card without reloading
+  function markReviewed(orderId: string, rating: number, comment: string) {
+    setFound((f) =>
+      f && {
+        ...f,
+        orders: f.orders.map((o) =>
+          o.orderId === orderId ? { ...o, isReviewed: true, review: { rating, comment, status: "pending" } } : o,
+        ),
+      },
+    );
   }
 
   return (
@@ -237,20 +258,31 @@ export default function MyOrdersModal() {
                 </div>
                 <ul className="grid gap-3 sm:grid-cols-2">
                   {found.orders.map((o) => (
-                    <OrderCard key={o._id} order={o} />
+                    <OrderCard key={o._id} order={o} onReview={() => setReviewing(o)} />
                   ))}
                 </ul>
               </section>
             )}
           </div>
         </div>
+
+        {/* Review form opens on top of this dialog */}
+        <ReviewModal
+          key={reviewing?.orderId ?? "closed"}
+          order={reviewing}
+          mobile={found?.mobile ?? ""}
+          onClose={() => setReviewing(null)}
+          onSubmitted={markReviewed}
+        />
       </dialog>
     </>
   );
 }
 
-function OrderCard({ order: o }: { order: TrackedOrder }) {
+function OrderCard({ order: o, onReview }: { order: TrackedOrder; onReview: () => void }) {
   const current = steps.findIndex((s) => s.status === o.orderStatus);
+  const canReview = o.orderStatus === "delivered" && !o.isReviewed;
+  const reviewInfo = o.isReviewed ? reviewStatusInfo[o.review?.status ?? "pending"] : null;
   const colors = o.productColors ?? [];
   const note = offPathNote[o.orderStatus];
 
@@ -333,6 +365,24 @@ function OrderCard({ order: o }: { order: TrackedOrder }) {
           {product.currency}
         </span>
       </div>
+
+      {/* Review: only delivered orders, once per order */}
+      {canReview && (
+        <button
+          type="button"
+          onClick={onReview}
+          className="mt-3 inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-amber-400 text-sm font-bold text-neutral-900 transition-colors hover:bg-amber-300"
+        >
+          <Star className="h-4 w-4 fill-current" />
+          রিভিউ লিখুন
+        </button>
+      )}
+      {reviewInfo && (
+        <p className={`mt-3 flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium ${reviewInfo.style}`}>
+          {o.review?.status === "published" ? <Check className="h-4 w-4 shrink-0" /> : <Clock className="h-4 w-4 shrink-0" />}
+          {reviewInfo.label}
+        </p>
+      )}
     </li>
   );
 }

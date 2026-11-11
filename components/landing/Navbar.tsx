@@ -1,5 +1,4 @@
 import { product } from "@/lib/product";
-import CopyPhoneButton from "@/components/landing/CopyPhoneButton";
 import MyOrdersModal from "@/components/landing/MyOrdersModal";
 import ProductsMenu from "@/components/landing/ProductsMenu";
 import { productMenuItems } from "@/lib/landings/menu";
@@ -55,7 +54,6 @@ export default function Navbar() {
           <div className="lg:hidden">
             <ProductsMenu items={productMenuItems} currentHref="/" variant="mobile" />
           </div>
-          <CopyPhoneButton phone={product.contact.phone} />
           <MyOrdersModal />
           {/* Compact on phones, full size from `sm` up */}
           <a
