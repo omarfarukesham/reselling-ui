@@ -1,5 +1,4 @@
 import Hero from "@/components/landing/sections/Hero";
-import Stats from "@/components/landing/sections/Stats";
 import ProductDetails from "@/components/landing/sections/ProductDetails";
 import ComboOffer from "@/components/landing/sections/ComboOffer";
 import WhyUs from "@/components/landing/sections/WhyUs";
@@ -11,12 +10,12 @@ export default function HomePage() {
   return (
     <OrderSelectionProvider>
       <Hero />
-      <Stats />
       {/* <ProductDetails /> */}
       <ComboOffer />
       <WhyUs />
       <OrderForm />
-      <Reviews />
+      {/* Main page keeps its built-in sample reviews until real ones are published */}
+      <Reviews showSamples />
     </OrderSelectionProvider>
   );
 }

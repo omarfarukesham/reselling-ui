@@ -59,7 +59,7 @@ export const product = {
   rating: { value: "4.10", count: "200+" },
 
   stats: [
-    { value: "200+", label: "হ্যাপি প্যারেন্টস" },
+    { value: "200+", label: "হ্যাপি কাস্টমার" },
     { value: "4.10★", label: "গড় রেটিং" },
     { value: "64", label: "জেলায় ডেলিভারি" },
   ],

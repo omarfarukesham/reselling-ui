@@ -38,7 +38,9 @@ export default function Gallery({ p, discount }: { p: SingleProduct; discount: n
                 src={img.src}
                 alt={img.alt}
                 fill
-                priority={i === 0}
+                // first photo is the LCP element: start loading it from <head>; the rest wait
+                preload={i === 0}
+                fetchPriority={i === 0 ? undefined : "low"}
                 sizes="(max-width: 1024px) 100vw, 560px"
                 className="object-cover"
               />

@@ -35,8 +35,11 @@ export const viewport: Viewport = {
   themeColor: "#fff8f1",
 };
 
+// `subsets` only controls which files are *preloaded*. Preloading just Bengali (the headlines)
+// halves the high-priority font downloads competing with the hero photo; the Latin files
+// still load on demand for English text and numbers.
 const hindSiliguri = Hind_Siliguri({
-  subsets: ["bengali", "latin"],
+  subsets: ["bengali"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-hind-siliguri",
   display: "swap",

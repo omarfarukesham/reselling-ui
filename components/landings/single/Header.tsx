@@ -1,4 +1,3 @@
-import CopyPhoneButton from "@/components/landing/CopyPhoneButton";
 import MyOrdersModal from "@/components/landing/MyOrdersModal";
 import ProductsMenu from "@/components/landing/ProductsMenu";
 import type { SingleProduct } from "@/lib/landings/types";
@@ -42,13 +41,17 @@ export default function Header({ p }: { p: SingleProduct }) {
               </a>
             </li>
           )}
+          <li>
+            <a href="#reviews" className="transition-colors hover:text-brand-600">
+              রিভিউ
+            </a>
+          </li>
         </ul>
 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <div className="lg:hidden">
             <ProductsMenu items={productMenuItems} currentHref={current} variant="mobile" />
           </div>
-          <CopyPhoneButton phone={p.contact.phone} />
           <MyOrdersModal />
           <a
             href="#order"
