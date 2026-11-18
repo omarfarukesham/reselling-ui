@@ -122,3 +122,59 @@ export interface AdminReviewsQuery {
   sortBy?: string;
   sortOrder?: "asc" | "desc";
 }
+
+// ── Agency Enquiries ──
+export type TEnquiryStatus = "received" | "new" | "contacted" | "closed";
+
+export interface IEnquiry {
+  id: string;
+  _id?: string;
+  name: string;
+  email: string;
+  businessName: string;
+  projectType: string;
+  budget: string;
+  message: string;
+  status: TEnquiryStatus;
+  adminNotes?: string;
+  submittedAt?: string;
+  client_submitted_at?: string;
+  createdAt: string;
+  updatedAt?: string;
+  userAgent?: string;
+  ipHash?: string;
+}
+
+export interface AdminEnquiriesQuery {
+  page?: number;
+  limit?: number;
+  status?: TEnquiryStatus | "";
+  projectType?: string;
+  budget?: string;
+  search?: string;
+  sortBy?: string;
+  sortOrder?: "asc" | "desc";
+}
+
+export interface AdminEnquiriesResponse {
+  status: boolean;
+  statusCode: number;
+  message: string;
+  meta: PaginationMeta;
+  data: IEnquiry[];
+}
+
+export interface CreateEnquiryInput {
+  name: string;
+  email: string;
+  businessName: string;
+  projectType: string;
+  budget: string;
+  message: string;
+  submittedAt?: string;
+}
+
+export interface UpdateEnquiryInput {
+  status?: TEnquiryStatus;
+  adminNotes?: string;
+}
